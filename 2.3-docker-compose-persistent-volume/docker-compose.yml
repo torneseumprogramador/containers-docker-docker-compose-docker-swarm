@@ -1,0 +1,32 @@
+version: '3.9'
+services:
+  web:
+    build:
+      context: ./xt
+      dockerfile: dockerfile
+    ports:
+      - "80:80"
+    volumes:
+      - type: volume
+        source: mydata
+        target: /app/wwwroot
+
+    # volumes: # define destino
+    #  - /home/wang/docker/xt/site/wwwroot:/app/wwwroot/:rw
+
+volumes:
+  mydata:
+  
+  
+  ## acessar dentro do container
+  #docker exec -it docker-web-1 /bin/bash
+  
+  ## criar arquivo no dentro do container em wwwroot
+  # touch wwwroot/teste-wang.txt
+
+  ## localizar arquivos no servidor
+  #  find / -name "teste-wang.txt*"
+  
+  ## coloque os seus assets nopath mostrado no find acima
+  ## exemplo se o seu caminho for: /var/lib/docker/volumes/docker_mydata/_data/
+  ### fazer um cp: cp -R /home/wang/meuprojeto/wwwroot /var/lib/docker/volumes/docker_mydata/_data/
