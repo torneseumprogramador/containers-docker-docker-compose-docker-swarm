@@ -127,8 +127,8 @@ docker push didox/SEU_APP:0.0.1
 ```dockerfile
 version: '3.9'
 services:
-  sistema_concrete_nginx:
-    container_name: sistema_concrete_nginx_container
+  sistema_nginx:
+    container_name: sistema_nginx_container
     build:
       dockerfile: nginx/Dockerfile
       context: nginx/
@@ -136,25 +136,25 @@ services:
     ports: 
       - "80:80"
     depends_on:
-      - sistema_concrete_java1
-      - sistema_concrete_java2
-      - sistema_concrete_java3
+      - sistema_java1
+      - sistema_java2
+      - sistema_java3
     networks:
       - concrete-network
-  sistema_concrete_java1:
-    container_name: sistema_concrete_nginx_container_1
+  sistema_java1:
+    container_name: sistema_nginx_container_1
     image: didox/validador-cpf-java-turma-devops
     command: sh -c "echo 'bem vindo ao container 1'"
     networks:
       - concrete-network
-  sistema_concrete_java2:
-    container_name: sistema_concrete_nginx_container_2
+  sistema_java2:
+    container_name: sistema_nginx_container_2
     image: didox/validador-cpf-java-turma-devops
     command: sh -c "echo 'bem vindo ao container 2'"
     networks:
       - concrete-network
-  sistema_concrete_java3:
-    container_name: sistema_concrete_nginx_container_3
+  sistema_java3:
+    container_name: sistema_nginx_container_3
     image: didox/validador-cpf-java-turma-devops
     command: sh -c "echo 'bem vindo ao container 2'"
     networks:
