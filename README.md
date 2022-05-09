@@ -50,6 +50,7 @@ docker ps -a
 ### Para remover a imagem do docker
 ```shell
 docker rm SEU_CONTAINER
+docker rm SEU_CONTAINER --force
 ```
 
 ### Para depurar
@@ -84,6 +85,16 @@ docker run -d -e USER -e PASSWORD -e DATABASE_URL -p 8081:8080 --name crud-java-
 docker start crud-java-login
 ```
 
+### Remover imagem
+```shell
+docker image rm didox/SUA_IMG
+```
+
+### Ver imagens
+```shell
+docker image ls
+```
+
 # Docker Hub 
 – Este é um registro usado para hospedar e baixar diversas imagens. Pode ser visto como uma plataforma SAAS de compartilhamento e gerenciamento de imagens. Dockerfile – Um arquivo texto contendo uma sintax simples para criação de novas imagens.
 - https://hub.docker.com/
@@ -106,16 +117,6 @@ docker push didox/SEU_APP
 ### Publicar a imagem no docker hub, para o tag 
 ```shell
 docker push didox/SEU_APP:0.0.1
-```
-
-### Remover imagem
-```shell
-docker image rm didox/SUA_IMG
-```
-
-### Ver imagens
-```shell
-docker image ls
 ```
 
 
