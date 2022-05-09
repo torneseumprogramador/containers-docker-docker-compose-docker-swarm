@@ -1,0 +1,1 @@
+cd /built_app && git pull

@@ -1,0 +1,14 @@
+version: '2.2'
+
+services:
+  db:
+    image: mongo:latest
+    ports:
+      - '27017:27017'
+  app:
+    image: didox/container:tag
+    environment:
+      ROOT_URL: http://localhost:5000
+      MONGO_URL: mongodb://db/container
+    ports:
+      - '5000:3000'
