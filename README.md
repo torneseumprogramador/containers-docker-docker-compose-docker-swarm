@@ -84,6 +84,10 @@ docker run -d -e USER -e PASSWORD -e DATABASE_URL -p 8081:8080 --name crud-java-
 docker start crud-java-login
 ```
 
+# Docker Hub 
+– Este é um registro usado para hospedar e baixar diversas imagens. Pode ser visto como uma plataforma SAAS de compartilhamento e gerenciamento de imagens. Dockerfile – Um arquivo texto contendo uma sintax simples para criação de novas imagens.
+- https://hub.docker.com/
+
 ### Gerar a tag da imagem no docker hub, coloca como latest
 ```shell
 docker tag didox/SEU_APP hub.docker.com/r/didox/SEU_APP
