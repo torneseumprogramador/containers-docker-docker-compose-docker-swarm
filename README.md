@@ -123,6 +123,48 @@ docker push didox/SEU_APP:0.0.1
 # Docker Compose
 - Docker Compose ajuda a definir e compartilhar aplicativos com vários contêineres. Com Docker Compose, você pode criar um arquivo para definir os serviços. Com um único comando, você pode girar tudo ou desmontar tudo.
 
+### Exemplo dockercompose
+```dockerfile
+version: '3.9'
+services:
+  sistema_concrete_nginx:
+    container_name: sistema_concrete_nginx_container
+    build:
+      dockerfile: nginx/Dockerfile
+      context: nginx/
+    image: nginx_didox
+    ports: 
+      - "80:80"
+    depends_on:
+      - sistema_concrete_java1
+      - sistema_concrete_java2
+      - sistema_concrete_java3
+    networks:
+      - concrete-network
+  sistema_concrete_java1:
+    container_name: sistema_concrete_nginx_container_1
+    image: didox/validador-cpf-java-turma-devops
+    command: sh -c "echo 'bem vindo ao container 1'"
+    networks:
+      - concrete-network
+  sistema_concrete_java2:
+    container_name: sistema_concrete_nginx_container_2
+    image: didox/validador-cpf-java-turma-devops
+    command: sh -c "echo 'bem vindo ao container 2'"
+    networks:
+      - concrete-network
+  sistema_concrete_java3:
+    container_name: sistema_concrete_nginx_container_3
+    image: didox/validador-cpf-java-turma-devops
+    command: sh -c "echo 'bem vindo ao container 2'"
+    networks:
+      - concrete-network
+
+networks: 
+  concrete-network:
+    driver: bridge
+```
+
 ### Para buildar imagem
 ```shell
 docker-compose build
