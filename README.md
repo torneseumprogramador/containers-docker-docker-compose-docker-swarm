@@ -47,29 +47,29 @@ docker ps
 docker ps -a
 ```
 
-### para remover a imagem do docker
+### Para remover a imagem do docker
 ```shell
 docker rm SEU_CONTAINER
 ```
 
-### para depurar
+### Para depurar
 ```shell
 docker attach SEU_CONTAINER
 ```
 
-### entra dentro do container
+### Entra dentro do container
 ```shell
 docker exec -it SEU_CONTAINER bash
 docker exec -it SEU_CONTAINER /bin/sh
 docker exec -it SEU_CONTAINER /bin/bash
 ```
 
-### roda comando dentro do container
+### Roda comando dentro do container
 ```shell
 docker exec -it SEU_CONTAINER ls -la
 ```
 
-### para ver logs
+### Para ver logs
 ```shell
 docker logs SEU_CONTAINER -f --tail 100
 ```
@@ -118,48 +118,48 @@ docker image ls
 # Docker Compose
 - Docker Compose ajuda a definir e compartilhar aplicativos com vários contêineres. Com Docker Compose, você pode criar um arquivo para definir os serviços. Com um único comando, você pode girar tudo ou desmontar tudo.
 
-### para buildar imagem
+### Para buildar imagem
 ```shell
 docker-compose build
 ```
 
-### para criar e levantar
+### Para criar e levantar
 ```shell
 docker-compose up
 docker-compose up --detach # roda em background
 ```
 
-### para levantar
+### Para levantar
 ```shell
 docker-compose start
 ```
 
-### para derrubar
+### Para derrubar
 ```shell
 docker-compose stop
 ```
 
-### para mostrar log
+### Para mostrar log
 ```shell
 docker-compose logs --follow
 ```
 
-### para ver os serviços disponíveis
+### Para ver os serviços disponíveis
 ```shell
 docker-compose ps
 ```
 
-### para derrubar os serviços
+### Para derrubar os serviços
 ```shell
 docker-compose down
 ```
 
-### para verificar network containers
+### Para verificar network containers
 ```shell
 docker network ls
 ```
 
-### para entrar na maquina e verificar rede
+### Para entrar na maquina e verificar rede
 ```shell
 docker exec -it sistema_csharp bash
 docker exec -it sistema_java bash
