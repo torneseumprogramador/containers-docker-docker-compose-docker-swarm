@@ -168,3 +168,29 @@ docker exec -it sistema_nodejs bash
 
 # Docker Swarm
 - O modo Swarm é um recurso do Docker que fornece funcionalidades de orquestração de contêiner, incluindo clustering nativo de hosts do Docker e agendamento de cargas de trabalho de contêineres. 
+
+### Cancela docker swarm
+```shell
+docker swarm leave --force
+```
+
+### Inicia docker swarm
+```shell
+docker swarm init --advertise-addr $(hostname -i | awk '{print $1;exit}')
+```
+
+### Faz o join com outros brokers do docker swarm
+```shell
+docker swarm join --token CHAVE_GERADA IP_SERVIDOR:2377
+```
+
+### Mostra tocker para fazer join em outros brokers
+```shell
+docker swarm join-token manager
+```
+
+### Verifica se os nós estão funcionando
+```shell
+docker node ls
+```
+
