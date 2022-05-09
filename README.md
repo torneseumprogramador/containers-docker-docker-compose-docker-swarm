@@ -165,3 +165,6 @@ docker exec -it sistema_csharp bash
 docker exec -it sistema_java bash
 docker exec -it sistema_nodejs bash
 ```
+
+# Docker Swarm
+- O modo Swarm é um recurso do Docker que fornece funcionalidades de orquestração de contêiner, incluindo clustering nativo de hosts do Docker e agendamento de cargas de trabalho de contêineres. 
