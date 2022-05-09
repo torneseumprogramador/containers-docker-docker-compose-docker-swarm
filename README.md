@@ -64,6 +64,16 @@ docker exec -it SEU_CONTAINER ls -la
 docker logs SEU_CONTAINER -f --tail 100
 ```
 
+### Iniciando container passando variáveis de ambiente
+```shell
+export USER='root' 
+export PASSWORD='root' 
+export DATABASE_URL='mysql://localhost:3306/SpringWebYoutubeTest?useTimezone=true&serverTimezone=UTC'
+
+docker run -d -e USER -e PASSWORD -e DATABASE_URL -p 8081:8080 --name crud-java-login didox/crud-java-login
+docker start crud-java-login
+```
+
 ### Gerar a tag da imagem no docker hub, coloca como latest
 ```shell
 docker tag didox/SEU_APP hub.docker.com/r/didox/SEU_APP
@@ -93,6 +103,7 @@ docker image rm didox/SUA_IMG
 ```shell
 docker image ls
 ```
+
 
 # Docker Compose
 - Docker Compose ajuda a definir e compartilhar aplicativos com vários contêineres. Com Docker Compose, você pode criar um arquivo para definir os serviços. Com um único comando, você pode girar tudo ou desmontar tudo.
