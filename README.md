@@ -95,6 +95,7 @@ docker image ls
 ```
 
 # Docker Compose
+- Docker Compose ajuda a definir e compartilhar aplicativos com vários contêineres. Com Docker Compose, você pode criar um arquivo para definir os serviços. Com um único comando, você pode girar tudo ou desmontar tudo.
 
 ### para buildar imagem
 ```shell
