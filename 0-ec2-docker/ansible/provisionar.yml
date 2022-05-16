@@ -45,3 +45,5 @@
 
 
 # ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -i hosts provisionar.yml -u ubuntu --private-key /Users/danilo/Desktop/desafio_devops/chaves_desafio_kubernetes/id_rsa
+
+# ssh -i /Users/danilo/Desktop/desafio_devops/chaves_desafio_kubernetes/id_rsa ubuntu@ec2-18-234-232-36.compute-1.amazonaws.com -o ServerAliveInterval=60
