@@ -432,5 +432,6 @@ override.tf.json
 # Ignore CLI configuration files
 .terraformrc
 terraform.rc
+.terraform.lock.hcl
 
 # End of https://www.toptal.com/developers/gitignore/api/java,node,macos,linux,windows,dotnetcore,ruby
