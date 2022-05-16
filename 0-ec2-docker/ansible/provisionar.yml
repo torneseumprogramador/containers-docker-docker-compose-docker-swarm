@@ -1,0 +1,47 @@
+- hosts: all
+  become: yes
+  tasks:
+    - name: "Configura hostname"
+      shell: hostname docker && echo "docker" > /etc/hostname
+    
+    - name: "Roda: sudo apt-get update"
+      apt:
+        upgrade: yes
+        update_cache: yes
+
+    - name: install packages required by docker
+      apt:
+        update_cache: yes
+        state: latest
+        name:
+        - apt-transport-https
+        - ca-certificates
+        - curl
+        - gpg-agent
+        - software-properties-common
+
+    - name: add docker GPG key
+      apt_key:
+        url: https://download.docker.com/linux/ubuntu/gpg
+        state: present
+
+    - name: add docker apt repo
+      apt_repository:
+        repo: deb https://download.docker.com/linux/ubuntu bionic stable
+        state: present
+
+    - name: install docker
+      apt:
+        update_cache: yes
+        state: latest
+        name:
+        - docker-ce
+        - docker-ce-cli
+        - containerd.io
+
+    - name: "Restart docker"
+      shell: sudo systemctl restart docker
+
+
+
+# ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -i hosts provisionar.yml -u ubuntu --private-key /Users/danilo/Desktop/desafio_devops/chaves_desafio_kubernetes/id_rsa
