@@ -119,6 +119,19 @@ docker push didox/SEU_APP
 docker push didox/SEU_APP:0.0.1
 ```
 
+### Criando uma imagem de um container existente
+```shell
+docker ps -a
+# pegar o nome do container 
+docker commit NOME_DO_CONTAINER
+# ele vai gerar o sha256:44567993043202392309 do container
+docker images -a
+# você verá uma imagem criada com o hash acima "44567993043" = sha256:44567993043202392309
+# gerar a tag baseado no hash
+docker tag 44567993043 SEU_USUARIO_DOCKER_HUB/NOME_DA_IMAGEM
+docker login 
+docker push SEU_USUARIO_DOCKER_HUB/NOME_DA_IMAGEM
+```
 
 # Docker Compose
 - Docker Compose ajuda a definir e compartilhar aplicativos com vários contêineres. Com Docker Compose, você pode criar um arquivo para definir os serviços. Com um único comando, você pode girar tudo ou desmontar tudo.
