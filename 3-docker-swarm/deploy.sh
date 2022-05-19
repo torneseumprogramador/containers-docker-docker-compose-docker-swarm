@@ -1,28 +1,28 @@
 #!/bin/bash
 cd 0-terraform
-~/terraform/terraform init
-~/terraform/terraform apply -auto-approve
+terraform init
+terraform apply -auto-approve
 
 echo  "Aguardando a criação das maquinas ..."
 sleep 5
 
-ID_M1=$(~/terraform/terraform output | grep 'swarm-master 1 -' | awk '{print $4;exit}')
-ID_M1_DNS=$(~/terraform/terraform output | grep 'swarm-master 1 -' | awk '{print $9;exit}' | cut -b 8-)
+ID_M1=$(terraform output | grep 'swarm-master 1 -' | awk '{print $4;exit}')
+ID_M1_DNS=$(terraform output | grep 'swarm-master 1 -' | awk '{print $9;exit}' | cut -b 8-)
 
-ID_M2=$(~/terraform/terraform output | grep 'swarm-master 2 -' | awk '{print $4;exit}')
-ID_M2_DNS=$(~/terraform/terraform output | grep 'swarm-master 2 -' | awk '{print $9;exit}' | cut -b 8-)
+ID_M2=$(terraform output | grep 'swarm-master 2 -' | awk '{print $4;exit}')
+ID_M2_DNS=$(terraform output | grep 'swarm-master 2 -' | awk '{print $9;exit}' | cut -b 8-)
 
-ID_M3=$(~/terraform/terraform output | grep 'swarm-master 3 -' | awk '{print $4;exit}')
-ID_M3_DNS=$(~/terraform/terraform output | grep 'swarm-master 3 -' | awk '{print $9;exit}' | cut -b 8-)
+ID_M3=$(terraform output | grep 'swarm-master 3 -' | awk '{print $4;exit}')
+ID_M3_DNS=$(terraform output | grep 'swarm-master 3 -' | awk '{print $9;exit}' | cut -b 8-)
 
-ID_W1=$(~/terraform/terraform output | grep 'swarm-workers 1 -' | awk '{print $4;exit}')
-ID_W1_DNS=$(~/terraform/terraform output | grep 'swarm-workers 1 -' | awk '{print $9;exit}' | cut -b 8-)
+ID_W1=$(terraform output | grep 'swarm-workers 1 -' | awk '{print $4;exit}')
+ID_W1_DNS=$(terraform output | grep 'swarm-workers 1 -' | awk '{print $9;exit}' | cut -b 8-)
 
-ID_W2=$(~/terraform/terraform output | grep 'swarm-workers 2 -' | awk '{print $4;exit}')
-ID_W2_DNS=$(~/terraform/terraform output | grep 'swarm-workers 2 -' | awk '{print $9;exit}' | cut -b 8-)
+ID_W2=$(terraform output | grep 'swarm-workers 2 -' | awk '{print $4;exit}')
+ID_W2_DNS=$(terraform output | grep 'swarm-workers 2 -' | awk '{print $9;exit}' | cut -b 8-)
 
-ID_W3=$(~/terraform/terraform output | grep 'swarm-workers 3 -' | awk '{print $4;exit}')
-ID_W3_DNS=$(~/terraform/terraform output | grep 'swarm-workers 3 -' | awk '{print $9;exit}' | cut -b 8-)
+ID_W3=$(terraform output | grep 'swarm-workers 3 -' | awk '{print $4;exit}')
+ID_W3_DNS=$(terraform output | grep 'swarm-workers 3 -' | awk '{print $9;exit}' | cut -b 8-)
 
 echo "
 [ec2-swarm-m1]
@@ -41,7 +41,7 @@ $ID_W3_DNS
 " > ../2-ansible/hosts
 
 cd ../2-ansible/
-ANSIBLE_OUT=$(ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -i hosts provisionar.yml -u ubuntu --private-key ~/projetos/devops/devops-acesso-sh.pem)
+ANSIBLE_OUT=$(ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -i hosts provisionar.yml -u ubuntu --private-key /Users/danilo/Desktop/desafio_devops/chaves_desafio_kubernetes/id_rsa)
 
 #### Mac ###
 SWARM_JOIN_WORKER=$(echo $ANSIBLE_OUT | grep -oE "( docker swarm join.*?2377)'" | head -n 1 | sed 's/\\//g' | sed "s/'t//g" | sed "s/'//g" | sed "s/'//g" | sed "s/,//g")
@@ -62,7 +62,7 @@ cat <<EOF > 2-provisionar-swarm-worker-auto-shell.yml
       shell: $SWARM_JOIN_WORKER
 EOF
 
-ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -i hosts 2-provisionar-swarm-worker-auto-shell.yml -u ubuntu --private-key ~/projetos/devops/devops-acesso-sh.pem
+ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -i hosts 2-provisionar-swarm-worker-auto-shell.yml -u ubuntu --private-key /Users/danilo/Desktop/desafio_devops/chaves_desafio_kubernetes/id_rsa
 
 cat <<EOF > 3-provisionar-swarm-master-auto-shell.yml
 - hosts:
@@ -75,7 +75,7 @@ cat <<EOF > 3-provisionar-swarm-master-auto-shell.yml
         msg: " '{{ ps.stdout_lines }}' "
 EOF
 
-ANSIBLE_OUT=$(ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -i hosts 3-provisionar-swarm-master-auto-shell.yml -u ubuntu --private-key ~/projetos/devops/devops-acesso-sh.pem)
+ANSIBLE_OUT=$(ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -i hosts 3-provisionar-swarm-master-auto-shell.yml -u ubuntu --private-key /Users/danilo/Desktop/desafio_devops/chaves_desafio_kubernetes/id_rsa)
 #### Mac ###
 
 SWARM_JOIN_MANAGER=$(echo $ANSIBLE_OUT | grep -oE "( docker swarm join.*?2377)'" | head -n 1 | sed 's/\\//g' | sed "s/'t//g" | sed "s/'//g" | sed "s/'//g" | sed "s/,//g")
@@ -103,4 +103,4 @@ cat <<EOF > 4-provisionar-swarm-master-auto-shell.yml
         msg: " '{{ ps.stdout_lines }}' "
 EOF
 
-ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -i hosts 4-provisionar-swarm-master-auto-shell.yml -u ubuntu --private-key ~/projetos/devops/devops-acesso-sh.pem
+ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -i hosts 4-provisionar-swarm-master-auto-shell.yml -u ubuntu --private-key /Users/danilo/Desktop/desafio_devops/chaves_desafio_kubernetes/id_rsa

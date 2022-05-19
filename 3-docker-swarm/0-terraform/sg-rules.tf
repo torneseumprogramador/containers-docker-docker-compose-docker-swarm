@@ -66,3 +66,23 @@ resource "aws_security_group_rule" "acessos_master_workers_http_3000" {
   cidr_blocks      = ["0.0.0.0/0"]
   security_group_id = aws_security_group.acessos_workers.id
 }
+
+resource "aws_security_group_rule" "acessos_master_master_http_8080" {
+  type             = "ingress"
+  description      = "Libera acessos http"
+  from_port        = 8080
+  to_port          = 8080
+  protocol         = "tcp"
+  cidr_blocks      = ["0.0.0.0/0"]
+  security_group_id = aws_security_group.acessos_masters.id
+}
+
+resource "aws_security_group_rule" "acessos_master_workers_http_8080" {
+  type             = "ingress"
+  description      = "Libera acessos http"
+  from_port        = 8080
+  to_port          = 8080
+  protocol         = "tcp"
+  cidr_blocks      = ["0.0.0.0/0"]
+  security_group_id = aws_security_group.acessos_workers.id
+}

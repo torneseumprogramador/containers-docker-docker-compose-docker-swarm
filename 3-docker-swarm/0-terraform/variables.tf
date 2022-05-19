@@ -1,6 +1,6 @@
 variable key_pair_name {
   type        = string
-  default     = "devops-acesso-sh"
+  default     = "chave_publica_desafio_kubernetes"
 }
 
 variable subnet-az-a {
