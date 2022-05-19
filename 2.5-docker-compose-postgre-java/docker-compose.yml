@@ -1,0 +1,21 @@
+version: '3.9'
+services:
+  postgresql:
+    container_name: postgresql
+    image: postgres
+    environment:
+      POSTGRES_USER: ilab
+      POSTGRES_PASSWORD: p1o3s4t6g7r8e9sql
+      POSTGRES_DB: apirest
+    ports:
+      - "5432:5432"
+  
+  java_jwt:
+    container_name: java_jwt
+    image: didox/java_jwt:latest
+    environment:
+      USER: ilab
+      PASSWORD: p1o3s4t6g7r8e9sql
+      DATABASE_URL: "postgresql://postgresql:5432/apirest?createDatabaseIfNotExist=true&sslmode=disable&useTimezone=true&serverTimezone=UTC"
+    ports:
+      - "8080:8080"
