@@ -1,18 +1,16 @@
 version: '3.9'
 services:
   web:
-    build:
-      context: ./xt
-      dockerfile: dockerfile
+    image: nginx
     ports:
       - "80:80"
-    volumes:
-      - type: volume
-        source: mydata
-        target: /app/wwwroot
+    # volumes:
+    #   - type: volume
+    #     source: mydata
+    #     target: /app/wwwroot
 
-    # volumes: # define destino
-    #  - /home/wang/docker/xt/site/wwwroot:/app/wwwroot/:rw
+    volumes: # define destino
+     - /Users/danilo/projetos/torne-se/aulas/docker/containers-docker-docker-compose-docker-swarm/2.3-docker-compose-persistent-volume/volume:/app/wwwroot/:rw
 
 volumes:
   mydata:
