@@ -19,3 +19,10 @@ services:
       DATABASE_URL: "postgresql://postgresql:5432/apirest?createDatabaseIfNotExist=true&sslmode=disable&useTimezone=true&serverTimezone=UTC"
     ports:
       - "8080:8080"
+
+  ubuntu-teste:
+    container_name: ubuntu-teste-rede
+    build:
+      dockerfile: Dockerfile
+      context: ubuntu-teste-rede/
+    image: ubuntu-teste-rede
