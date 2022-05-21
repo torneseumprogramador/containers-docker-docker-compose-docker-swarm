@@ -38,6 +38,7 @@
         - docker-ce
         - docker-ce-cli
         - containerd.io
+        - docker-compose
 
     - name: "Restart docker"
       shell: sudo systemctl restart docker

@@ -1,4 +1,4 @@
-version: '3.9'
+version: '3.3'
 services:
   nodejs:
     container_name: app-imersao-docker-nodejs
@@ -11,7 +11,7 @@ services:
     image: didox/validador-cpf-csharp-turma-devops:latest
     ports:
       - "5001:80"
-  
+
   java:
     container_name: validador-cpf-java-turma-devops
     image: didox/validador-cpf-java-turma-devops:latest

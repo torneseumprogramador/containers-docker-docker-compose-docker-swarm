@@ -42,6 +42,39 @@ resource "aws_security_group" "acessos_docker" {
       prefix_list_ids = null,
       security_groups: null,
       self: null
+    },
+    {
+      description      = "Liberando HTTP"
+      from_port        = 8080
+      to_port          = 8080
+      protocol         = "tcp"
+      cidr_blocks      = ["0.0.0.0/0"]
+      ipv6_cidr_blocks = ["::/0"]
+      prefix_list_ids = null,
+      security_groups: null,
+      self: null
+    },
+    {
+      description      = "Liberando HTTP"
+      from_port        = 3000
+      to_port          = 3000
+      protocol         = "tcp"
+      cidr_blocks      = ["0.0.0.0/0"]
+      ipv6_cidr_blocks = ["::/0"]
+      prefix_list_ids = null,
+      security_groups: null,
+      self: null
+    },
+    {
+      description      = "Liberando HTTP"
+      from_port        = 5001
+      to_port          = 5001
+      protocol         = "tcp"
+      cidr_blocks      = ["0.0.0.0/0"]
+      ipv6_cidr_blocks = ["::/0"]
+      prefix_list_ids = null,
+      security_groups: null,
+      self: null
     }
   ]
 
