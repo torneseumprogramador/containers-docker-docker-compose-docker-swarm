@@ -1,10 +1,10 @@
-version: '3.9'
+version: '3.3'
 services:
   sistema_nginx:
     container_name: sistema_nginx_container
     build:
-      dockerfile: nginx/Dockerfile
       context: nginx/
+      dockerfile: Dockerfile
     image: nginx_didox
     ports: 
       - "80:80"
@@ -13,28 +13,28 @@ services:
       - sistema_java2
       - sistema_java3
     networks:
-      - concrete-network
+      - tornese-network
   sistema_java1:
     container_name: sistema_nginx_container_1
     image: didox/validador-cpf-java-turma-devops
     command: sh -c "echo 'bem vindo ao container 1'"
     networks:
-      - concrete-network
+      - tornese-network
   sistema_java2:
     container_name: sistema_nginx_container_2
     image: didox/validador-cpf-java-turma-devops
     command: sh -c "echo 'bem vindo ao container 2'"
     networks:
-      - concrete-network
+      - tornese-network
   sistema_java3:
     container_name: sistema_nginx_container_3
     image: didox/validador-cpf-java-turma-devops
     command: sh -c "echo 'bem vindo ao container 2'"
     networks:
-      - concrete-network
+      - tornese-network
 
 networks: 
-  concrete-network:
+  tornese-network:
     driver: bridge
     
 # $ docker-compose build
