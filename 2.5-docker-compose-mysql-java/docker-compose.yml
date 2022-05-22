@@ -1,0 +1,31 @@
+version: '3.3'
+services:
+  mysql:
+    container_name: mysql
+    image: mysql
+    environment:
+      MYSQL_USER: danilo
+      MYSQL_PASSWORD: m9y5s6q3l
+      MYSQL_ROOT_PASSWORD: m9y5s6q3l
+      MYSQL_DATABASE: crud
+    ports:
+      - "3306:3306"
+  
+  crud_java_login:
+    container_name: crud_java_login
+    image: didox/crud-java-login:latest
+    environment:
+      USER: danilo
+      PASSWORD: m9y5s6q3l
+      DATABASE_URL: "mysql://mysql:3306/crud?createDatabaseIfNotExist=true&sslmode=disable&useTimezone=true&serverTimezone=UTC"
+    ports:
+      - "8080:8080"
+    depends_on: 
+      - mysql
+
+  ubuntu-teste:
+    container_name: ubuntu-teste-rede
+    build:
+      dockerfile: Dockerfile
+      context: ubuntu-teste-rede/
+    image: ubuntu-teste-rede

@@ -1,4 +1,4 @@
-version: '3.9'
+version: '3.3'
 services:
   web:
     image: nginx
@@ -10,7 +10,7 @@ services:
     #     target: /app/wwwroot
 
     volumes: # define destino
-     - /Users/danilo/projetos/torne-se/aulas/docker/containers-docker-docker-compose-docker-swarm/2.3-docker-compose-persistent-volume/volume:/app/wwwroot/:rw
+     - /root/volume:/app/wwwroot/:rw
 
 volumes:
   mydata:
