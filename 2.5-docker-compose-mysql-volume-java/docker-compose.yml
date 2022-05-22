@@ -1,7 +1,4 @@
 version: '3.3'
-volumes:
-  db-mysql:
-    driver: local
 services:
   mysql:
     container_name: mysql
@@ -14,7 +11,7 @@ services:
     ports:
       - "3306:3306"
     volumes:
-      - db-mysql:/var/lib/mysql-data
+      - ./docker-volume:/var/lib/mysql
   
   crud_java_login:
     container_name: crud_java_login
