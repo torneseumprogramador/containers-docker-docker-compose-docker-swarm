@@ -10,6 +10,6 @@ services:
       MYSQL_USER: db_user
       MYSQL_PASSWORD: db_user_pass
     ports:
-      - "6033:3306"
+      - "3306:3306"
     volumes:
-      - ./data/db:/var/lib/mysql
+      - ./docker-volume:/var/lib/mysql
