@@ -11,7 +11,7 @@ services:
     ports:
       - "3306:3306"
     volumes:
-      - ./docker-volume:/var/lib/mysql
+      - ./docker-volume-do-desafio:/var/lib/mysql
   
   crud_java_login:
     container_name: crud_java_login

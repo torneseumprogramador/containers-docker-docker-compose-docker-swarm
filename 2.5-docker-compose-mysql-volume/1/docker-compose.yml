@@ -1,5 +1,7 @@
 version: '3.3'
- 
+volumes:
+  dbdata:
+  
 services:
   db:
     image: mysql:5.7
@@ -13,5 +15,3 @@ services:
       - "3306:3306"
     volumes:
       - dbdata:/var/lib/mysql
-volumes:
-  dbdata:

@@ -10,7 +10,7 @@ services:
     #     target: /app/wwwroot
 
     volumes: # define destino
-     - /root/volume:/app/wwwroot/:rw
+     - ./volume:/app/wwwroot/:rw
 
 volumes:
   mydata:
