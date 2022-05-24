@@ -66,7 +66,7 @@ docker swarm join --token SWMTKN-1-1x9nw8bmbg5lkskuzmoyygx8zvqmyri4bchfnh4j9ym5n
 
 # para fazer o deploy, somente criar um docker-compose da seguinte forma
 ```docker-compose
-version: '3.9'
+version: '3.3'
 services:
   nodejs:
     image: didox/app-imersao-docker-nodejs:latest
@@ -83,6 +83,38 @@ services:
 ```shell
 docker stack deploy --compose-file docker-compose.yml nodejs
 ```
+
+# Arquivo docker java docker-compose-java.yml
+```yml
+version: '3.3'
+services:
+  crud_java_login:
+    image: didox/crud-java-login:latest
+    environment:
+      USER: root
+      PASSWORD: mysqldesafio345
+      DATABASE_URL: "mysql://SEU_DOMINIO:3306/crud?createDatabaseIfNotExist=true&sslmode=disable&useTimezone=true&serverTimezone=UTC"
+    ports:
+      - "8080:8080"
+    depends_on:
+      - mysql
+    deploy:
+      mode: replicated
+      replicas: 2
+      restart_policy:
+        condition: on-failure
+```
+
+# Deploy java app do desafio
+```shell
+docker stack deploy --compose-file docker-compose-java.yml java
+```
+
+# Remove java app do desafio
+```shell
+docker stack rm java
+```
+
 
 # irá mostrar a mensagem
 ```shell

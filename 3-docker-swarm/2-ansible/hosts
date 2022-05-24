@@ -1,15 +1,15 @@
 
 [ec2-swarm-m1]
-ec2-18-232-113-138.compute-1.amazonaws.com
+ec2-54-80-104-228.compute-1.amazonaws.com
 [ec2-swarm-m2]
-ec2-3-93-1-50.compute-1.amazonaws.com
+ec2-18-207-174-58.compute-1.amazonaws.com
 [ec2-swarm-m3]
-ec2-54-224-230-217.compute-1.amazonaws.com
+ec2-3-80-246-136.compute-1.amazonaws.com
 
 [ec2-swarm-w1]
-ec2-54-145-246-48.compute-1.amazonaws.com
+ec2-100-24-1-69.compute-1.amazonaws.com
 [ec2-swarm-w2]
-ec2-54-152-92-214.compute-1.amazonaws.com
+ec2-54-162-29-241.compute-1.amazonaws.com
 [ec2-swarm-w3]
-ec2-35-173-137-225.compute-1.amazonaws.com
+ec2-54-160-161-29.compute-1.amazonaws.com
 

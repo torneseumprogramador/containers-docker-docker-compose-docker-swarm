@@ -4,7 +4,7 @@ terraform init
 terraform apply -auto-approve
 
 echo  "Aguardando a criação das maquinas ..."
-sleep 5
+sleep 20
 
 ID_M1=$(terraform output | grep 'swarm-master 1 -' | awk '{print $4;exit}')
 ID_M1_DNS=$(terraform output | grep 'swarm-master 1 -' | awk '{print $9;exit}' | cut -b 8-)
@@ -92,7 +92,7 @@ cat <<EOF > 4-provisionar-swarm-master-auto-shell.yml
   - ec2-swarm-m3
   become: yes
   tasks:
-    - shell: docker swarm leave --force
+    # - shell: docker swarm leave --force
     
     - name: "Fazendo join swarm master no master"
       shell: $SWARM_JOIN_MANAGER
