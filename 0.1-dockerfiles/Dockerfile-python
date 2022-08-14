@@ -11,7 +11,8 @@ FROM base AS python-deps
 
 # Install pipenv and compilation dependencies
 RUN apt-get update && apt-get install -y --no-install-recommends gcc
-RUN apt install libmysqlclient-dev
+RUN apt-get install libmariadb-dev-compat -y
+RUN apt-get install libmariadb-dev -y
 RUN pip install pipenv
 
 # Install python dependencies in /.venv
