@@ -254,3 +254,8 @@ docker swarm join-token manager
 docker node ls
 ```
 
+
+
+### Infrastructure model
+
+![Infrastructure model](.infragenie/infrastructure_model.png)
