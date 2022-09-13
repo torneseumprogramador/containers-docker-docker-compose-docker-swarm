@@ -1,0 +1,22 @@
+version: '3.3'
+services:
+  javaEcommerce:
+    container_name: ecommerce-java
+    image: didox/ecommerce-treinamento-ibm:v0.0.3
+    environment:
+      MYSQL_HOST: host-do-banco.com
+      DATABASE: ecommerce
+      MYSQL_USER: admin
+      MYSQL_PASS: 2a3d112m1in0
+    ports:
+      - "8080:8080"
+  javaSpringWeb:
+    container_name: spring-web
+    image: didox/java-spring-web-youtube:v0.0.1
+    environment:
+      HOST: host-do-banco.com
+      DATABASE: spring_web
+      USER: admin
+      PASSWORD: 2a3d112m1in0
+    ports:
+      - "3000:8080"
