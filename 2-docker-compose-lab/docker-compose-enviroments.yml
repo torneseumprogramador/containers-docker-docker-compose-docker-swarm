@@ -1,0 +1,65 @@
+version: '3.8'
+
+volumes:
+  redis: {}
+
+services:
+  app: &app_base
+    tty: true
+    stdin_open: true
+    env_file:
+    - .env
+    volumes:
+    - ./:/app:delegated
+
+  sqs:
+    <<: *app_base
+    container_name: sqs
+    build:
+      context: .
+    restart: always
+    depends_on:
+     - postgres
+     - localstack
+    networks:
+      - app-net
+    environment:
+      - SQS_ENABLED=true
+  localstack:
+    container_name: "${LOCALSTACK_DOCKER_NAME-localstack_main}"
+    image: localstack/localstack
+    ports:
+      - "127.0.0.1:4566:4566"            # LocalStack Gateway
+      - "127.0.0.1:4510-4559:4510-4559"  # external services port range
+      - "127.0.0.1:53:53"                # DNS config (only required for Pro)
+      - "127.0.0.1:53:53/udp"            # DNS config (only required for Pro)
+      - "127.0.0.1:443:443"              # LocalStack HTTPS Gateway (only required for Pro)
+    environment:
+      - DEBUG=${DEBUG-}
+      - PERSISTENCE=${PERSISTENCE-}
+      - LAMBDA_EXECUTOR=${LAMBDA_EXECUTOR-}
+      - DOCKER_HOST=unix:///var/run/docker.sock
+      - SERVICES=s3,sqs # Lista de serviços para subir apenas o que precisamos
+      - SQS_ENDPOINT_STRATEGY=path
+    volumes:
+      - "${LOCALSTACK_VOLUME_DIR:-./volume}:/var/lib/localstack"
+      - "/var/run/docker.sock:/var/run/docker.sock"
+      - "./localstack-init.sh:/docker-entrypoint-initaws.d/00-localstack-init.sh"
+
+    networks:
+      - app-net
+  redis:
+    image: redis:7-alpine
+    healthcheck:
+      test: redis-cli -h 127.0.0.1 ping | grep -q '^PONG$$'
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    ports:
+      - 6379:6379
+    networks:
+      - app-net
+    volumes:
+      - redis:/data
+networks:
+  app-net: {}
